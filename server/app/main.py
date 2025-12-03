@@ -1,10 +1,10 @@
-# app/main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.database import db_instance
 from app.routers import auth, shows
 from app.config import settings
+import uvicorn
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -47,3 +47,16 @@ def create_app() -> FastAPI:
         return {"message": "Welcome to FletNix API. Visit /docs for Swagger UI"}
 
     return application
+
+
+def main():
+    app = create_app()
+    uvicorn.run(
+        app, 
+        host="127.0.0.1", 
+        port=8000,
+        log_level="info"
+    )
+
+if __name__ == "__main__":
+    main()
