@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
     OMDB_API_KEY: str = ""
+    FRONTEND_URL: str = ""
 
     class Config:
         env_file = ".env"

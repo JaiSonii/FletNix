@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.database import db_instance
 from app.routers import auth, shows
+from app.config import settings
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -24,6 +25,8 @@ def create_app() -> FastAPI:
     origins = [
         "http://localhost:3000",
         "http://localhost:5173",
+        settings.FRONTEND_URL
+
     ]
 
     application.add_middleware(
